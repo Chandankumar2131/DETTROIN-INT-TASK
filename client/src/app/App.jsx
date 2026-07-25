@@ -3,15 +3,9 @@ import {
   ArrowRight, BookOpen, CalendarDays, Camera, ChevronDown, ExternalLink,
   Mail, MapPin, Menu, MessageCircle, Play, Search, Sparkles, Trophy, Users, X,
 } from 'lucide-react'
-import './App.css'
-import InnerPage from './InnerPage'
-
-const navItems = [
-  { label: 'About', href: '#about' },
-  { label: 'Learning', href: '#learning' },
-  { label: 'Student Life', href: '#experience' },
-  { label: 'News & Events', href: '#news' },
-]
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
+import { primaryNavigation as navItems } from '../data/navigation'
+import InnerPage from '../pages/InnerPage'
 
 const pillars = [
   { icon: BookOpen, number: '01', title: 'Academic Curiosity', text: 'A process-focused curriculum that encourages students to question, discover and think independently.' },
@@ -69,7 +63,12 @@ function HomePage() {
         <div className="shell nav-wrap">
           <Brand />
           <nav className="desktop-nav" aria-label="Primary navigation">
-            {navItems.map((item) => <a key={item.label} href={item.href}>{item.label}</a>)}
+            {navItems.map((item) => (
+              <div className="nav-item" key={item.label}>
+                <a className="nav-parent" href={item.href}>{item.label}{item.children && <ChevronDown size={14} />}</a>
+                {item.children && <div className="nav-dropdown">{item.children.map((child) => <a href={child.href} key={child.label}>{child.label}<ArrowRight size={15} /></a>)}</div>}
+              </div>
+            ))}
             <a className="nav-with-icon" href="#learning">More <ChevronDown size={14} /></a>
           </nav>
           <div className="nav-actions">
@@ -202,10 +201,17 @@ function HomePage() {
 }
 
 function App() {
-  const path = window.location.pathname.replace(/\/+$/, '') || '/'
-  if (path === '/vision-philosophy') return <InnerPage page="vision" />
-  if (path === '/learning-experience') return <InnerPage page="learning" />
-  return <HomePage />
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/vision-philosophy/" element={<InnerPage page="vision" />} />
+        <Route path="/learning-experience/" element={<InnerPage page="learning" />} />
+        <Route path="/international-curriculum/" element={<InnerPage page="international" />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </BrowserRouter>
+  )
 }
 
 export default App

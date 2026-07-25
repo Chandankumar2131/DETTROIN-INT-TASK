@@ -4,21 +4,7 @@ import {
   Mail, MapPin, Menu, MessageCircle, Palette, Play, Search, ShieldCheck,
   Sparkles, Target, Trophy, Users, X,
 } from 'lucide-react'
-
-const links = [
-  ['Home', '/'],
-  ['Vision & Philosophy', '/vision-philosophy/'],
-  ['The Learning Experience', '/learning-experience/'],
-  ['International Curriculum', '#'],
-  ['Special Education Needs', '#'],
-  ['Intra-School Programmes', '#'],
-  ['Inter-School Programmes', '#'],
-  ['Infrastructure', '#'],
-  ['A Day in School', '#'],
-  ['Announcements', '#'],
-  ['News & Events', '#'],
-  ['Admissions', '#'],
-]
+import { fullNavigation as links } from '../data/navigation'
 
 function PageBrand({ light = false }) {
   return (
@@ -54,8 +40,14 @@ function PageHeader({ active }) {
         <div className="shell nav-wrap">
           <PageBrand />
           <nav className="desktop-nav inner-nav" aria-label="Primary navigation">
-            <a href="/vision-philosophy/" className={active === 'vision' ? 'active' : ''}>Our School</a>
-            <a href="/learning-experience/" className={active === 'learning' ? 'active' : ''}>Learning</a>
+            <div className="nav-item">
+              <a href="/vision-philosophy/" className={`nav-parent ${active === 'vision' ? 'active' : ''}`}>Our School <ChevronDown size={14} /></a>
+              <div className="nav-dropdown"><a href="/vision-philosophy/">Vision & Philosophy <ArrowRight size={15} /></a><a href="#page-footer">About Vasant Valley <ArrowRight size={15} /></a></div>
+            </div>
+            <div className="nav-item">
+              <a href="/learning-experience/" className={`nav-parent ${active === 'learning' || active === 'international' ? 'active' : ''}`}>Learning <ChevronDown size={14} /></a>
+              <div className="nav-dropdown"><a href="/learning-experience/">The Learning Experience <ArrowRight size={15} /></a><a href="/international-curriculum/">International Curriculum <ArrowRight size={15} /></a></div>
+            </div>
             <a href="#page-footer">Student Life</a><a href="#page-footer">News & Events</a>
             <a className="nav-with-icon" href="#page-footer">More <ChevronDown size={14} /></a>
           </nav>
@@ -188,7 +180,78 @@ function LearningPage() {
   )
 }
 
+const learnerAttributes = [
+  ['Confident', 'Working fluently with information and ideas—our own and those of others.'],
+  ['Responsible', 'Taking ownership while remaining responsive and respectful to others.'],
+  ['Reflective', 'Understanding ourselves as learners and continually improving how we learn.'],
+  ['Innovative', 'Equipped for new and future challenges with curiosity and imagination.'],
+  ['Engaged', 'Ready to participate intellectually and socially, and to make a difference.'],
+]
+
+const subjectGroups = [
+  { title: 'Languages', subjects: 'English Language & Literature · Hindi · Spanish' },
+  { title: 'Humanities', subjects: 'History · Economics · Geography · Global Perspectives' },
+  { title: 'Sciences', subjects: 'Biology · Physics · Chemistry · Environmental Management' },
+  { title: 'Mathematics', subjects: 'Mathematics · Extended Mathematics' },
+  { title: 'Creative & Professional', subjects: 'Art & Design · Computer Science · ICT · Business Studies' },
+]
+
+function InternationalPage() {
+  return (
+    <>
+      <section className="inner-hero international-hero">
+        <div className="inner-hero__image" /><div className="inner-hero__shade" />
+        <div className="shell inner-hero__content">
+          <span className="page-kicker">Cambridge International · Classes 8–12</span>
+          <h1>Local roots.<br /><em>Global horizons.</em></h1>
+          <p>A globally recognised Cambridge pathway that develops independent thinkers, confident communicators and curious lifelong learners.</p>
+        </div>
+        <div className="inner-hero__index"><span>03</span><i /><small>International curriculum</small></div>
+      </section>
+
+      <section className="international-intro">
+        <div className="shell manifesto__grid">
+          <div><span className="eyebrow">Cambridge at Vasant Valley</span><h2>A coherent journey from <em>foundation to mastery.</em></h2></div>
+          <div><p className="manifesto__lead">Vasant Valley School is a registered Cambridge International School offering the Cambridge curriculum for Classes 8–12.</p><p>Class 8 builds the skills and attributes needed for IGCSE in Classes 9 and 10, before students progress to Cambridge Advanced in Classes 11 and 12.</p></div>
+        </div>
+      </section>
+
+      <section className="pathway-section">
+        <div className="shell">
+          <div className="inner-section-title light"><div><span className="eyebrow eyebrow--light">The Cambridge pathway</span><h2>One pathway.<br /><em>Three defining stages.</em></h2></div></div>
+          <div className="pathway-grid">
+            <article><span>01 · Class 8</span><h3>Foundation Year</h3><p>A thoughtful transition that builds inquiry, academic language and readiness for international study.</p><strong>Discover & prepare</strong></article>
+            <article><span>02 · Classes 9–10</span><h3>Cambridge IGCSE</h3><p>A broad, flexible curriculum that develops knowledge, practical understanding and intellectual enquiry.</p><strong>Explore & specialise</strong></article>
+            <article><span>03 · Classes 11–12</span><h3>AS & A Levels</h3><p>In-depth study that strengthens independent thinking and prepares learners for universities worldwide.</p><strong>Deepen & progress</strong></article>
+          </div>
+        </div>
+      </section>
+
+      <section className="attributes-section">
+        <div className="shell attributes-grid">
+          <div className="attributes-sticky"><span className="eyebrow">Cambridge learner attributes</span><h2>Ready for the world they will <em>help shape.</em></h2><p>The Cambridge approach develops habits of mind that travel far beyond an examination.</p></div>
+          <div className="attribute-list">{learnerAttributes.map(([title, text], index) => <article key={title}><span>0{index + 1}</span><div><h3>{title}</h3><p>{text}</p></div></article>)}</div>
+        </div>
+      </section>
+
+      <section className="subjects-section">
+        <div className="shell">
+          <div className="subjects-heading"><div><span className="eyebrow">Breadth with choice</span><h2>Subjects that open <em>possibilities.</em></h2></div><p>Students build a balanced programme across languages, humanities, sciences, mathematics and creative disciplines, guided by their interests and future goals.</p></div>
+          <div className="subject-list">{subjectGroups.map((group, index) => <article key={group.title}><span>0{index + 1}</span><h3>{group.title}</h3><p>{group.subjects}</p><ArrowRight size={19} /></article>)}</div>
+        </div>
+      </section>
+
+      <section className="international-cta">
+        <div className="shell"><div><span className="eyebrow eyebrow--light">Cambridge Advanced</span><h2>Designed for depth.<br /><em>Recognised worldwide.</em></h2></div><div><p>AS & A Levels offer flexible subject choices, rigorous assessment and a strong foundation for university study in India and across the world.</p><a className="button button--light" href="https://www.cambridgeinternational.org/" target="_blank" rel="noreferrer">Explore Cambridge <ExternalLink size={16} /></a></div></div>
+      </section>
+
+      <section className="next-page"><div className="shell"><span>Return to our approach</span><a href="/learning-experience/"><strong>The Learning Experience</strong><ArrowRight /></a></div></section>
+    </>
+  )
+}
+
 export default function InnerPage({ page }) {
   useEffect(() => { window.scrollTo(0, 0) }, [page])
-  return <main id="page-top"><PageHeader active={page} />{page === 'vision' ? <VisionPage /> : <LearningPage />}<PageFooter /></main>
+  const content = page === 'vision' ? <VisionPage /> : page === 'international' ? <InternationalPage /> : <LearningPage />
+  return <main id="page-top"><PageHeader active={page} />{content}<PageFooter /></main>
 }
