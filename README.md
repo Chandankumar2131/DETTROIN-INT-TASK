@@ -1,49 +1,55 @@
-# Vasant Valley School Redesign
+# Vasant Valley School Website Redesign
 
-A modern MERN-stack redesign created for the Dettroin Full Stack Developer Internship assessment.
+A modern, responsive redesign of the Vasant Valley School website, created for the Dettroin Full Stack Developer Internship assessment. The project retains the purpose and essential content of the original website while improving its design, navigation, responsiveness, and overall user experience.
 
-## Architecture
+## Submission Details
 
-```text
-.
-├── client/
-│   ├── public/
-│   └── src/
-│       ├── app/          # Router and application composition
-│       ├── assets/       # Local media assets
-│       ├── components/   # Reusable layout, navigation and UI
-│       ├── data/         # Static presentation data
-│       ├── pages/        # Route-level page components
-│       ├── services/     # Backend API client
-│       └── styles/       # Global and site styles
-└── server/
-    └── src/
-        ├── config/       # Environment and MongoDB configuration
-        ├── controllers/  # HTTP request handlers
-        ├── data/         # Development content
-        ├── middleware/   # Error and request middleware
-        ├── routes/       # Express route definitions
-        └── services/     # Business logic
+| Detail | Information |
+| --- | --- |
+| Full Name | Chandan Kumar |
+| Email Address | chandansinghrkt123@gmail.com |
+| GitHub Username | [Chandankumar2131](https://github.com/Chandankumar2131) |
+| Selected Website | [Vasant Valley School](https://www.vasantvalley.org/) |
+| Live Demo | [View Live Website](https://dettroin-int-task-client.vercel.app/) |
+| GitHub Repository | [DETTROIN-INT-TASK](https://github.com/Chandankumar2131/DETTROIN-INT-TASK) |
+
+## Technologies Used
+
+- React.js and Vite
+- Tailwind CSS
+- React Router
+- Node.js and Express.js
+- MongoDB with Mongoose
+- Vercel for frontend deployment
+- Render for backend deployment
+
+## Key Improvements Made
+
+- Introduced a modern and professional visual design while preserving the school's identity.
+- Created a fully responsive experience for desktop, tablet, and mobile devices.
+- Reorganized the navigation with clear dropdowns, a responsive mobile menu, and individual page routes.
+- Built reusable components and a structured frontend and backend codebase.
+- Redesigned important pages including Admissions, About, Programmes, Infrastructure, FAQs, Announcements, and News & Events.
+- Added interactive FAQ accordions, event filters, detail pages, galleries, and clear calls to action.
+- Improved content hierarchy, spacing, readability, and accessibility.
+- Added production-ready routing and deployment configuration for Vercel and Render.
+
+## Run Locally
+
+Install the project dependencies:
+
+```bash
+npm install
 ```
 
-## Run locally
+Create local environment files from the provided `.env.example` files, then start the frontend and backend:
 
-1. Copy `client/.env.example` and `server/.env.example` to `.env` files.
-2. Run `npm install`.
-3. Run `npm run dev`.
+```bash
+npm run dev
+```
 
-The React client runs on port 5173 and the Express API on port 5000.
+The frontend runs on `http://localhost:5173` and the backend API runs on `http://localhost:10000`.
 
-## Available routes
+## Disclaimer
 
-- `/`
-- `/vision-philosophy/`
-- `/learning-experience/`
-
-## API endpoints
-
-- `GET /api/health`
-- `GET /api/school`
-- `GET /api/navigation`
-- `GET /api/news`
-- `POST /api/enquiries`
+This project is an independent redesign created for an internship assessment. It is not the official Vasant Valley School website. The original content and brand assets belong to their respective owners.
