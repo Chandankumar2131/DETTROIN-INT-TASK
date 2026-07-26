@@ -1,8 +1,9 @@
 export const primaryNavigation = [
   { label: 'Our School', href: '#about', children: [
     { label: 'Vision & Philosophy', href: '/vision-philosophy/' },
-    { label: 'About Vasant Valley', href: '#about' },
+    { label: 'About Vasant Valley', href: '/about/' },
     { label: 'Infrastructure', href: '/infrastructure/' },
+    { label: 'Frequently Asked Questions', href: '/faqs/' },
   ] },
   { label: 'Learning', href: '#learning', children: [
     { label: 'The Learning Experience', href: '/learning-experience/' },
@@ -17,6 +18,12 @@ export const primaryNavigation = [
     { label: 'Announcements', href: '/announcements/' },
     { label: 'News & Events', href: '/news-events/' },
   ] },
+  { label: 'Admissions', href: '/admission/' },
+  { label: 'More', href: '/infrastructure/', children: [
+    { label: 'Infrastructure', href: '/infrastructure/' },
+    { label: 'A Day in School', href: '/a-day-in-school/' },
+    { label: 'Frequently Asked Questions', href: '/faqs/' },
+  ] },
 ]
 
 export const fullNavigation = [
@@ -24,5 +31,5 @@ export const fullNavigation = [
   ['The Learning Experience', '/learning-experience/'], ['International Curriculum', '/international-curriculum/'],
   ['Special Education Needs', '/special-education-needs/'], ['Intra-School Programmes', '/programmes/intra-school/'],
   ['Inter-School Programmes', '/programmes/inter-school/'], ['Infrastructure', '/infrastructure/'], ['A Day in School', '/a-day-in-school/'],
-  ['Announcements', '/announcements/'], ['News & Events', '/news-events/'], ['FAQs', '/faqs/'], ['Admissions', '#'],
+  ['Announcements', '/announcements/'], ['News & Events', '/news-events/'], ['FAQs', '/faqs/'], ['Admissions', '/admission/'], ['Login', '/login/'], ['About Us', '/about/'],
 ]

@@ -222,6 +222,9 @@ function App() {
         <Route path="/news-and-events/the-23rd-edition-of-laissez-faire/" element={<InnerPage page="event-laissez" />} />
         <Route path="/news-and-events/21st-edition-of-suryodaya-it-fest-2026/" element={<InnerPage page="event-suryodaya" />} />
         <Route path="/faqs/" element={<InnerPage page="faqs" />} />
+        <Route path="/admission/" element={<InnerPage page="admission" />} />
+        <Route path="/login/" element={<InnerPage page="login" />} />
+        <Route path="/about/" element={<InnerPage page="about" />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>

@@ -42,7 +42,7 @@ function PageHeader({ active }) {
           <nav className="desktop-nav inner-nav" aria-label="Primary navigation">
             <div className="nav-item">
               <a href="/vision-philosophy/" className={`nav-parent ${active === 'vision' ? 'active' : ''}`}>Our School <ChevronDown size={14} /></a>
-              <div className="nav-dropdown"><a href="/vision-philosophy/">Vision & Philosophy <ArrowRight size={15} /></a><a href="#page-footer">About Vasant Valley <ArrowRight size={15} /></a></div>
+              <div className="nav-dropdown"><a href="/vision-philosophy/">Vision & Philosophy <ArrowRight size={15} /></a><a href="#page-footer">About Vasant Valley <ArrowRight size={15} /></a><a href="/faqs/">Frequently Asked Questions <ArrowRight size={15} /></a></div>
             </div>
             <div className="nav-item">
               <a href="/learning-experience/" className={`nav-parent ${['learning', 'international', 'special'].includes(active) ? 'active' : ''}`}>Learning <ChevronDown size={14} /></a>
@@ -58,13 +58,13 @@ function PageHeader({ active }) {
             </div>
             <div className="nav-item">
               <a className={`nav-parent ${['infrastructure', 'day'].includes(active) ? 'active' : ''}`} href="/infrastructure/">More <ChevronDown size={14} /></a>
-              <div className="nav-dropdown"><a href="/infrastructure/">Infrastructure <ArrowRight size={15} /></a><a href="/a-day-in-school/">A Day in School <ArrowRight size={15} /></a></div>
+              <div className="nav-dropdown"><a href="/infrastructure/">Infrastructure <ArrowRight size={15} /></a><a href="/a-day-in-school/">A Day in School <ArrowRight size={15} /></a><a href="/faqs/">Frequently Asked Questions <ArrowRight size={15} /></a></div>
             </div>
           </nav>
           <div className="nav-actions">
             <button className="icon-button" aria-label="Search"><Search size={19} /></button>
             <a className="portal-link" href="#page-footer">School Portal <ExternalLink size={14} /></a>
-            <a className="button button--small" href="#page-footer">Admissions</a>
+            <a className="button button--small" href="/admission/">Admissions</a>
             <button className="menu-button inner-menu-trigger" aria-label="Open navigation" onClick={() => setOpen(true)}><Menu size={24} /></button>
           </div>
         </div>
@@ -559,6 +559,29 @@ const faqItems = [
   { category: 'General', question: 'Is there another Vasant Valley campus?', answer: 'A new Vasant Valley School campus in Gurgaon has been announced. It will carry forward the founding school’s child-centred values while developing its own learning community.' },
 ]
 
+function AdmissionsPage() {
+  const pathways = [
+    { number: '01', title: 'Pre-School (Foundation)', note: 'Academic session 2026–27', copy: 'Registration is completed online in accordance with Directorate of Education guidelines. Age and category requirements apply.', action: 'View Foundation details' },
+    { number: '02', title: 'Classes 1 to 7', note: 'Vacancy-based admission', copy: 'Applications are considered when a place becomes available in the relevant year group and remain active for three months.', action: 'Send an application' },
+    { number: '03', title: 'Class XI · AS Level', note: 'Entrance assessment', copy: 'Eligible students complete English and Mathematics assessments followed by an interaction with the admissions committee.', action: 'View eligibility' },
+  ]
+  const steps = [
+    ['Explore', 'Review the appropriate admission pathway, eligibility information and current availability.'],
+    ['Apply', 'Complete the relevant online application or send the required information to the Admissions Office.'],
+    ['Assessment', 'Shortlisted applicants may be invited for an assessment or interaction, depending on the year group.'],
+    ['Verification', 'Admission is confirmed after original documents are verified and all applicable requirements are met.'],
+  ]
+  return <>
+    <section className="admission-hero"><div className="shell"><span className="page-kicker">Join our community</span><h1>Admissions <em>2026–27</em></h1><p>Every admissions journey begins with understanding the child, the family and the learning environment in which they will thrive.</p><div><a className="button button--light" href="#pathways">Explore pathways <ArrowRight size={16} /></a><a href="mailto:admissions@vasantvalley.edu.in">Speak to Admissions</a></div></div></section>
+    <section className="admission-intro"><div className="shell admission-intro-grid"><div><span className="eyebrow">Admissions at Vasant Valley</span><h2>A thoughtful process for <em>every stage</em></h2></div><div><p className="manifesto__lead">We welcome families who value curiosity, inclusion, collaboration and a holistic approach to education.</p><p>Application requirements vary by entry point. Foundation admissions follow government timelines, while admission to other classes depends upon available vacancies.</p></div></div></section>
+    <section className="pathway-cards" id="pathways"><div className="shell"><div className="admission-section-head"><span className="eyebrow eyebrow--light">Choose an entry point</span><h2>Admission pathways</h2></div><div className="pathway-card-grid">{pathways.map(item => <article key={item.title}><span>{item.number}</span><small>{item.note}</small><h3>{item.title}</h3><p>{item.copy}</p><a href="mailto:admissions@vasantvalley.edu.in">{item.action} <ArrowRight size={16} /></a></article>)}</div></div></section>
+    <section className="admission-process"><div className="shell"><div className="process-heading"><div><span className="eyebrow">How it works</span><h2>From enquiry to <em>enrolment</em></h2></div><p>Our Admissions Office guides shortlisted families through each applicable step and communicates dates directly.</p></div><div className="process-steps">{steps.map(([title, copy], index) => <article key={title}><span>{String(index + 1).padStart(2,'0')}</span><div><h3>{title}</h3><p>{copy}</p></div></article>)}</div></div></section>
+    <section className="admission-documents"><div className="shell"><div><span className="eyebrow">Foundation 2026–27</span><h2>Important information</h2><p>Foundation applications must follow the eligibility, documentation and category rules announced by the Directorate of Education.</p><div className="document-links"><a href="#page-footer">Admission timeline <ExternalLink size={15} /></a><a href="#page-footer">Eligibility and points criteria <ExternalLink size={15} /></a><a href="#page-footer">Required documents <ExternalLink size={15} /></a><a href="/faqs/">Admissions FAQs <ArrowRight size={15} /></a></div></div><aside><strong>Age eligibility</strong><p>Children should meet the prescribed birth-date requirements for the relevant academic session. Any permitted relaxation is subject to official rules.</p><span>Applications under EWS/DG and CWSN categories are processed according to Directorate of Education requirements.</span></aside></div></section>
+    <section className="fee-section"><div className="shell"><div className="fee-heading"><div><span className="eyebrow">Current fee overview</span><h2>Transparent and <em>easy to compare</em></h2></div><p>Figures below provide a concise overview. Optional services and earmarked charges may apply separately.</p></div><div className="fee-table-wrap"><table><thead><tr><th>Fee component</th><th>Foundation–5</th><th>Classes 6–10</th><th>Classes 11–12</th></tr></thead><tbody><tr><td>Tuition fee <small>Quarterly</small></td><td>₹51,228</td><td>₹58,881</td><td>₹70,098</td></tr><tr><td>Annual charges <small>Quarterly</small></td><td>₹25,638</td><td>₹25,638</td><td>₹25,638</td></tr><tr><td>Development fee <small>Annually</small></td><td>₹30,738</td><td>₹35,330</td><td>₹42,060</td></tr><tr><td>Admission fee <small>One time</small></td><td>₹200</td><td>₹200</td><td>₹200</td></tr><tr><td>Security deposit <small>One time</small></td><td>₹500</td><td>₹500</td><td>₹500</td></tr></tbody></table></div><p className="fee-note">Please confirm current fees and payment schedules directly with the school before applying.</p></div></section>
+    <section className="admission-cta"><div className="shell"><div><span className="eyebrow eyebrow--light">Ready to begin?</span><h2>Take the next step.</h2></div><p>Write to our Admissions Office with the child’s name, date of birth and intended year group.</p><a className="button button--light" href="mailto:admissions@vasantvalley.edu.in">Email Admissions <Mail size={16} /></a></div></section>
+  </>
+}
+
 function FaqPage() {
   const [activeCategory, setActiveCategory] = useState('All')
   const [query, setQuery] = useState('')
@@ -635,6 +658,6 @@ function EventDetailPage({ eventKey }) {
 
 export default function InnerPage({ page }) {
   useEffect(() => { window.scrollTo(0, 0) }, [page])
-  const content = page === 'vision' ? <VisionPage /> : page === 'international' ? <InternationalPage /> : page === 'special' ? <SpecialEducationPage /> : page === 'intra' || page === 'inter' ? <ProgrammesPage mode={page} /> : page === 'infrastructure' ? <InfrastructurePage /> : page === 'day' ? <DayInSchoolPage /> : page === 'announcements' ? <AnnouncementsPage /> : page === 'announcement-detail' ? <AnnouncementDetailPage /> : page === 'announcement-marksheet' ? <MarksheetAnnouncementPage /> : page === 'announcement-gurgaon' ? <GurgaonAnnouncementPage /> : page === 'faqs' ? <FaqPage /> : page === 'news-events' ? <NewsEventsPage /> : page.startsWith('event-') ? <EventDetailPage eventKey={page} /> : <LearningPage />
+  const content = page === 'vision' ? <VisionPage /> : page === 'international' ? <InternationalPage /> : page === 'special' ? <SpecialEducationPage /> : page === 'intra' || page === 'inter' ? <ProgrammesPage mode={page} /> : page === 'infrastructure' ? <InfrastructurePage /> : page === 'day' ? <DayInSchoolPage /> : page === 'announcements' ? <AnnouncementsPage /> : page === 'announcement-detail' ? <AnnouncementDetailPage /> : page === 'announcement-marksheet' ? <MarksheetAnnouncementPage /> : page === 'announcement-gurgaon' ? <GurgaonAnnouncementPage /> : page === 'admission' ? <AdmissionsPage /> : page === 'faqs' ? <FaqPage /> : page === 'news-events' ? <NewsEventsPage /> : page.startsWith('event-') ? <EventDetailPage eventKey={page} /> : <LearningPage />
   return <main id="page-top"><PageHeader active={page} />{content}<PageFooter /></main>
 }
