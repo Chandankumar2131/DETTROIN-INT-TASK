@@ -52,7 +52,10 @@ function PageHeader({ active }) {
               <a href="/programmes/intra-school/" className={`nav-parent ${['intra', 'inter'].includes(active) ? 'active' : ''}`}>Programmes <ChevronDown size={14} /></a>
               <div className="nav-dropdown"><a href="/programmes/intra-school/">Intra-School <ArrowRight size={15} /></a><a href="/programmes/inter-school/">Inter-School <ArrowRight size={15} /></a></div>
             </div>
-            <a href="#page-footer">News & Events</a>
+            <div className="nav-item">
+              <a href="/announcements/" className={`nav-parent ${active.startsWith('announcement') ? 'active' : ''}`}>News & Events <ChevronDown size={14} /></a>
+              <div className="nav-dropdown"><a href="/announcements/">Announcements <ArrowRight size={15} /></a><a href="#page-footer">News & Events <ArrowRight size={15} /></a></div>
+            </div>
             <div className="nav-item">
               <a className={`nav-parent ${['infrastructure', 'day'].includes(active) ? 'active' : ''}`} href="/infrastructure/">More <ChevronDown size={14} /></a>
               <div className="nav-dropdown"><a href="/infrastructure/">Infrastructure <ArrowRight size={15} /></a><a href="/a-day-in-school/">A Day in School <ArrowRight size={15} /></a></div>
@@ -461,8 +464,86 @@ function DayInSchoolPage() {
   )
 }
 
+const announcements = [
+  {
+    category: 'Academic Notice',
+    date: '03 June 2026',
+    title: 'Class 12 CBSE Marksheet',
+    excerpt: 'CBSE marksheets for the All India Senior School Certificate Examination are available for collection from the Senior School Office.',
+    href: '/announcements/class-12-cbse-marksheet/',
+  },
+  {
+    category: 'Institutional Update',
+    date: '26 May 2026',
+    title: 'Vasant Valley Centre for Excellence in Education',
+    excerpt: 'A new professional learning initiative rooted in thirty-six years of experience, child-centred practice and educator mentorship.',
+    href: '/announcements/vasant-valley-centre-for-excellence-in-education/',
+    featured: true,
+  },
+  {
+    category: 'School Community',
+    date: '08 May 2026',
+    title: 'Announcing Vasant Valley School, Gurgaon',
+    excerpt: 'The ethos, standards and commitment to holistic development of our founding campus will now shape a new school in Gurgaon.',
+    href: '/announcements/announcing-vasant-valley-school-gurgaon/',
+  },
+]
+
+function AnnouncementsPage() {
+  return (
+    <>
+      <section className="announcements-hero">
+        <div className="shell"><span className="page-kicker">School communications</span><h1>Announcements</h1><p>Important notices, institutional updates and information for the Vasant Valley community.</p></div>
+      </section>
+      <section className="announcement-list-section">
+        <div className="shell announcement-toolbar"><span>Latest updates</span><div><button className="active">All</button><button>Academic</button><button>Community</button></div></div>
+        <div className="shell announcement-grid">
+          {announcements.map((item, index) => <article className={item.featured ? 'featured' : ''} key={item.title}><div className="announcement-number">{String(index + 1).padStart(2, '0')}</div><div className="announcement-meta"><span>{item.category}</span><time>{item.date}</time></div><h2>{item.title}</h2><p>{item.excerpt}</p><a href={item.href}>Read announcement <ArrowRight size={17} /></a></article>)}
+        </div>
+      </section>
+      <section className="announcement-help"><div className="shell"><div><span className="eyebrow eyebrow--light">Need more information?</span><h2>We are here to help.</h2></div><p>For questions about an announcement, contact the school office and our team will direct your enquiry.</p><a className="button button--light" href="mailto:info@vasantvalley.edu.in">Contact school office <Mail size={16} /></a></div></section>
+    </>
+  )
+}
+
+function AnnouncementDetailPage() {
+  return (
+    <>
+      <section className="article-hero"><div className="shell"><a href="/announcements/">← All announcements</a><span>Institutional Update · 26 May 2026</span><h1>Vasant Valley Centre for <em>Excellence in Education</em></h1><p>Strengthening teaching practice, building leadership capacity and enabling sustainable whole-school development.</p></div></section>
+      <article className="announcement-article">
+        <div className="shell article-layout"><aside><span>Share</span><a href="#page-footer">in</a><a href="#page-footer">f</a><i /></aside><div className="article-copy"><p className="article-lead">We are pleased to introduce the <strong>Vasant Valley Centre for Excellence in Education</strong>, an initiative rooted in our school’s long-standing commitment to excellence in teaching and learning.</p><p>Our work at the Centre draws on thirty-six years of experience in nurturing professional learning communities, mentoring educators and aligning academic practices with the child-centred values that define Vasant Valley School.</p><blockquote>Professional learning that is flexible, contextual and designed to create lasting change across a whole school.</blockquote><h2>Building capacity for meaningful change</h2><p>The Centre offers a range of carefully designed professional-learning opportunities aimed at strengthening teaching and learning practices, developing leadership capacity and enabling sustainable school improvement.</p><p>Programmes bring together reflection, research and practical application so that educators can translate new ideas into meaningful classroom experiences.</p><a className="article-external" href="#page-footer">Explore the Centre for Excellence <ExternalLink size={17} /></a></div></div>
+      </article>
+      <nav className="article-pagination"><div className="shell"><a href="/announcements/class-12-cbse-marksheet/">← Previous</a><span /><a href="/announcements/announcing-vasant-valley-school-gurgaon/">Next →</a></div></nav>
+    </>
+  )
+}
+
+function MarksheetAnnouncementPage() {
+  return (
+    <>
+      <section className="article-hero"><div className="shell"><a href="/announcements/">← All announcements</a><span>Academic Notice · 03 June 2026</span><h1>Class 12 CBSE <em>Marksheet</em></h1><p>Collection information for the All India Senior School Certificate Examination marksheets.</p></div></section>
+      <article className="announcement-article">
+        <div className="shell article-layout"><aside><strong>Important notice</strong><span>Senior School Office</span><br /><span>10:00 a.m.–3:00 p.m.</span></aside><div className="article-copy"><p className="article-lead">CBSE marksheets for the All India Senior School Certificate Examination for Class XII are now available for collection.</p><p>Students or authorised parents may collect the marksheet from the Senior School Office on any working day between <strong>10:00 a.m. and 3:00 p.m.</strong>, from Wednesday, 3 June 2026 onwards.</p><blockquote>Please carry the required school identification or authorisation when visiting the office.</blockquote><h2>Collection details</h2><p>To keep the process smooth, please contact the school office in advance if someone other than the student or parent will collect the document.</p><a className="article-external" href="mailto:info@vasantvalley.edu.in">Contact the Senior School Office <Mail size={17} /></a></div></div>
+      </article>
+      <nav className="article-pagination"><div className="shell"><a href="/announcements/announcing-vasant-valley-school-gurgaon/">← Previous</a><span /><a href="/announcements/vasant-valley-centre-for-excellence-in-education/">Next →</a></div></nav>
+    </>
+  )
+}
+
+function GurgaonAnnouncementPage() {
+  return (
+    <>
+      <section className="article-hero"><div className="shell"><a href="/announcements/">← All announcements</a><span>School Community · 08 May 2026</span><h1>Announcing Vasant Valley School, <em>Gurgaon</em></h1><p>A new chapter that carries forward thirty-six years of child-centred education and shared values.</p></div></section>
+      <article className="announcement-article">
+        <div className="shell article-layout"><aside><strong>Community update</strong><span>From the Chairperson</span><br /><span>Education Today Trust</span></aside><div className="article-copy"><p className="article-lead">Thirty-six years ago, a dream took shape and Vasant Valley School was born. Today, we are ready to bring that educational legacy to a wider community through a new campus in Gurgaon.</p><p>Founded and run by Education Today, Vasant Valley School has built its reputation on strength, authenticity and excellence in education. That reputation rests on shared values, thoughtful pedagogy and an unwavering commitment to the holistic development of every child entrusted to our care.</p><blockquote>The ethos, academic standards and deep focus on student well-being will remain firmly at the heart of the new school.</blockquote><h2>A new chapter, built on trusted values</h2><p>The Gurgaon campus will be developed and managed by an experienced team that includes former school leaders and educators with a proven record of creating progressive learning communities.</p><p>While the new school will draw on the learning of the last thirty-six years, it will also reflect contemporary global educational practice and the needs of its own community.</p><p>We value your continued support and good wishes as we embark on this significant new phase in Vasant Valley School’s journey.</p><p><strong>Rekha Purie</strong><br />Chairperson, Vasant Valley School<br />Education Today Trust</p><a className="article-external" href="#page-footer">Visit Vasant Valley School, Gurgaon <ExternalLink size={17} /></a></div></div>
+      </article>
+      <nav className="article-pagination"><div className="shell"><a href="/announcements/vasant-valley-centre-for-excellence-in-education/">← Previous</a><span /><a href="/announcements/class-12-cbse-marksheet/">Next →</a></div></nav>
+    </>
+  )
+}
+
 export default function InnerPage({ page }) {
   useEffect(() => { window.scrollTo(0, 0) }, [page])
-  const content = page === 'vision' ? <VisionPage /> : page === 'international' ? <InternationalPage /> : page === 'special' ? <SpecialEducationPage /> : page === 'intra' || page === 'inter' ? <ProgrammesPage mode={page} /> : page === 'infrastructure' ? <InfrastructurePage /> : page === 'day' ? <DayInSchoolPage /> : <LearningPage />
+  const content = page === 'vision' ? <VisionPage /> : page === 'international' ? <InternationalPage /> : page === 'special' ? <SpecialEducationPage /> : page === 'intra' || page === 'inter' ? <ProgrammesPage mode={page} /> : page === 'infrastructure' ? <InfrastructurePage /> : page === 'day' ? <DayInSchoolPage /> : page === 'announcements' ? <AnnouncementsPage /> : page === 'announcement-detail' ? <AnnouncementDetailPage /> : page === 'announcement-marksheet' ? <MarksheetAnnouncementPage /> : page === 'announcement-gurgaon' ? <GurgaonAnnouncementPage /> : <LearningPage />
   return <main id="page-top"><PageHeader active={page} />{content}<PageFooter /></main>
 }

@@ -13,7 +13,10 @@ export const primaryNavigation = [
     { label: 'Intra-School Programmes', href: '/programmes/intra-school/' },
     { label: 'Inter-School Programmes', href: '/programmes/inter-school/' },
   ] },
-  { label: 'News & Events', href: '#news' },
+  { label: 'News & Events', href: '/announcements/', children: [
+    { label: 'Announcements', href: '/announcements/' },
+    { label: 'News & Events', href: '/news-events/' },
+  ] },
 ]
 
 export const fullNavigation = [
@@ -21,5 +24,5 @@ export const fullNavigation = [
   ['The Learning Experience', '/learning-experience/'], ['International Curriculum', '/international-curriculum/'],
   ['Special Education Needs', '/special-education-needs/'], ['Intra-School Programmes', '/programmes/intra-school/'],
   ['Inter-School Programmes', '/programmes/inter-school/'], ['Infrastructure', '/infrastructure/'], ['A Day in School', '/a-day-in-school/'],
-  ['Announcements', '#'], ['News & Events', '#'], ['Admissions', '#'],
+  ['Announcements', '/announcements/'], ['News & Events', '/news-events/'], ['Admissions', '#'],
 ]

@@ -213,6 +213,14 @@ function App() {
         <Route path="/programmes/inter-school/" element={<InnerPage page="inter" />} />
         <Route path="/infrastructure/" element={<InnerPage page="infrastructure" />} />
         <Route path="/a-day-in-school/" element={<InnerPage page="day" />} />
+        <Route path="/announcements/" element={<InnerPage page="announcements" />} />
+        <Route path="/announcements/class-12-cbse-marksheet/" element={<InnerPage page="announcement-marksheet" />} />
+        <Route path="/announcements/vasant-valley-centre-for-excellence-in-education/" element={<InnerPage page="announcement-detail" />} />
+        <Route path="/announcements/announcing-vasant-valley-school-gurgaon/" element={<InnerPage page="announcement-gurgaon" />} />
+        <Route path="/news-events/" element={<InnerPage page="news-events" />} />
+        <Route path="/news-and-events/inter-school-tennis-zonal-tournament-2026/" element={<InnerPage page="event-tennis" />} />
+        <Route path="/news-and-events/the-23rd-edition-of-laissez-faire/" element={<InnerPage page="event-laissez" />} />
+        <Route path="/news-and-events/21st-edition-of-suryodaya-it-fest-2026/" element={<InnerPage page="event-suryodaya" />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
