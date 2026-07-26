@@ -18,7 +18,6 @@ export const primaryNavigation = [
     { label: 'Announcements', href: '/announcements/' },
     { label: 'News & Events', href: '/news-events/' },
   ] },
-  { label: 'Admissions', href: '/admission/' },
   { label: 'More', href: '/infrastructure/', children: [
     { label: 'Infrastructure', href: '/infrastructure/' },
     { label: 'A Day in School', href: '/a-day-in-school/' },

@@ -42,7 +42,7 @@ function PageHeader({ active }) {
           <nav className="desktop-nav inner-nav" aria-label="Primary navigation">
             <div className="nav-item">
               <a href="/vision-philosophy/" className={`nav-parent ${active === 'vision' ? 'active' : ''}`}>Our School <ChevronDown size={14} /></a>
-              <div className="nav-dropdown"><a href="/vision-philosophy/">Vision & Philosophy <ArrowRight size={15} /></a><a href="#page-footer">About Vasant Valley <ArrowRight size={15} /></a><a href="/faqs/">Frequently Asked Questions <ArrowRight size={15} /></a></div>
+              <div className="nav-dropdown"><a href="/vision-philosophy/">Vision & Philosophy <ArrowRight size={15} /></a><a href="/about/">About Vasant Valley <ArrowRight size={15} /></a><a href="/faqs/">Frequently Asked Questions <ArrowRight size={15} /></a></div>
             </div>
             <div className="nav-item">
               <a href="/learning-experience/" className={`nav-parent ${['learning', 'international', 'special'].includes(active) ? 'active' : ''}`}>Learning <ChevronDown size={14} /></a>
@@ -63,7 +63,7 @@ function PageHeader({ active }) {
           </nav>
           <div className="nav-actions">
             <button className="icon-button" aria-label="Search"><Search size={19} /></button>
-            <a className="portal-link" href="#page-footer">School Portal <ExternalLink size={14} /></a>
+            <a className="portal-link" href="/login/">School Portal <ExternalLink size={14} /></a>
             <a className="button button--small" href="/admission/">Admissions</a>
             <button className="menu-button inner-menu-trigger" aria-label="Open navigation" onClick={() => setOpen(true)}><Menu size={24} /></button>
           </div>
@@ -86,8 +86,8 @@ function PageFooter() {
       <div className="shell footer-main">
         <div className="footer-brand"><PageBrand light /><p>Nurturing independent minds and compassionate citizens since 1990.</p><div className="social-links"><a href="#page-footer" aria-label="Instagram"><Camera size={18} /></a><a href="#page-footer" aria-label="Facebook"><MessageCircle size={18} /></a><a href="#page-footer" aria-label="YouTube"><Play size={18} /></a></div></div>
         <div className="footer-links">
-          <div><h3>Explore</h3><a href="/vision-philosophy/">Vision & philosophy</a><a href="/learning-experience/">Learning experience</a><a href="#page-footer">Student life</a><a href="#page-footer">News & events</a></div>
-          <div><h3>Information</h3><a href="#page-footer">Admissions</a><a href="#page-footer">FAQs</a><a href="#page-footer">School portal</a><a href="#page-footer">Statutory compliance</a></div>
+          <div><h3>Explore</h3><a href="/vision-philosophy/">Vision & philosophy</a><a href="/learning-experience/">Learning experience</a><a href="/about/">About us</a><a href="/news-events/">News & events</a></div>
+          <div><h3>Information</h3><a href="/admission/">Admissions</a><a href="/faqs/">FAQs</a><a href="/login/">School portal</a><a href="#page-footer">Statutory compliance</a></div>
           <div className="footer-contact"><h3>Visit us</h3><p><MapPin size={17} /> Sector C, Vasant Kunj,<br />New Delhi 110070</p><p><Mail size={17} /> info@vasantvalley.edu.in</p><a href="tel:+911141767940">+91 11 4176 7940</a></div>
         </div>
       </div>
@@ -582,6 +582,44 @@ function AdmissionsPage() {
   </>
 }
 
+const portalGroups = [
+  { icon: Users, role: 'Teacher', note: 'Teaching, communication and school services', links: ['School ERP', 'School Email', 'Google Workspace'] },
+  { icon: Brain, role: 'Student', note: 'Learning resources and student services', links: ['School ERP', 'Google Workspace'] },
+  { icon: Heart, role: 'Parent', note: 'Family account, fees and school information', links: ['School ERP', 'Fee Portal'] },
+]
+
+function LoginPage() {
+  return <>
+    <section className="portal-hero"><div className="shell"><span className="page-kicker">Vasant Valley digital services</span><h1>Your school,<br /><em>one secure gateway.</em></h1><p>Select your role to reach the service you need. Access is available only to authorised members of the school community.</p><div className="portal-security"><ShieldCheck size={20} /><span>Secure external services</span><i /><span>Use your school-issued credentials</span></div></div></section>
+    <section className="portal-section"><div className="shell"><div className="portal-heading"><div><span className="eyebrow">Choose your access</span><h2>Welcome back.</h2></div><p>These cards are a clear gateway to the school’s authorised systems. Authentication takes place on the relevant service.</p></div><div className="portal-grid">{portalGroups.map(({ icon: Icon, role, note, links: services }, index) => <article key={role}><header><span>0{index + 1}</span><Icon size={27} /></header><h3>{role} login</h3><p>{note}</p><div>{services.map(service => <button type="button" key={service}>{service}<ExternalLink size={16} /></button>)}</div></article>)}</div></div></section>
+    <section className="portal-help"><div className="shell"><div><Mail size={24} /><span><strong>Having trouble signing in?</strong><small>Contact the school office for account or access support.</small></span></div><a href="mailto:info@vasantvalley.edu.in">Get support <ArrowRight size={16} /></a></div></section>
+  </>
+}
+
+const legacyLeaders = [
+  ['RP', 'Rekha Purie', 'Chairperson'],
+  ['AP', 'Aroon Purie', 'Founder'],
+  ['VV', 'Ved Vyas', 'Founder-Principal'],
+  ['AK', 'Arun Kapur', 'First Headmaster · 1990–2020'],
+]
+
+const currentLeaders = [
+  ['SB', 'Sharmila Bakshi', 'Principal'],
+  ['VT', 'Vijay Trivedi', 'Head of Senior School'],
+  ['MD', 'Mona Datta', 'Head of Junior School'],
+  ['AJ', 'A. P. John', 'Administrative Head'],
+]
+
+function AboutPage() {
+  return <>
+    <section className="about-hero"><div className="about-hero__image" /><div className="about-hero__shade" /><div className="shell"><span className="page-kicker">Our story · Since 1990</span><h1>Built on a belief in<br /><em>every child’s potential.</em></h1><p>Vasant Valley School is the realisation of a vision for an education that develops independent minds, responsible citizens and joyful lifelong learners.</p></div></section>
+    <section className="about-story"><div className="shell about-story-grid"><div><span className="eyebrow">The founding vision</span><h2>Excellence in deed,<br /><em>not only in words.</em></h2><div className="about-stat"><strong>1990</strong><span>The year our school journey began</span></div></div><div><p className="manifesto__lead">Run by the Education Today Trust, Vasant Valley School grew from Mr. Aroon Purie and Mrs. Rekha Purie’s vision of the ideal school experience.</p><p>They imagined a place where arts and sports stand alongside academic learning—and where becoming a good citizen matters as deeply as becoming a good student.</p><p>From an opening community of around 200 students and 16 teachers, the school has grown on an eight-acre campus while preserving a personal, inclusive approach.</p></div></div></section>
+    <section className="legacy-section"><div className="shell"><div className="legacy-heading"><span className="eyebrow eyebrow--light">People who shaped our story</span><h2>A legacy of <em>purposeful leadership</em></h2></div><div className="legacy-grid">{legacyLeaders.map(([initials, name, role]) => <article key={name}><span>{initials}</span><div><h3>{name}</h3><p>{role}</p></div></article>)}</div></div></section>
+    <section className="leadership-section"><div className="shell"><div className="leadership-copy"><span className="eyebrow">Leadership today</span><h2>Guiding one connected <em>learning community.</em></h2><p>Our leadership team works with heads of department, coordinators and teachers to create a school experience that is rigorous, caring and responsive to every learner.</p></div><div className="leadership-grid">{currentLeaders.map(([initials, name, role]) => <article key={name}><div>{initials}</div><h3>{name}</h3><p>{role}</p></article>)}</div></div></section>
+    <section className="about-community"><div className="shell"><article><Users size={28} /><strong>150+</strong><span>Teachers and specialists</span></article><article><Sparkles size={28} /><strong>2,000+</strong><span>Alumni across the world</span></article><div><span className="eyebrow eyebrow--light">Our community</span><h2>Learning never stops.</h2><p>Staff enrichment, alumni connection and collaborative leadership keep the school evolving while staying rooted in its founding values.</p><a href="/vision-philosophy/">Explore our philosophy <ArrowRight size={16} /></a></div></div></section>
+  </>
+}
+
 function FaqPage() {
   const [activeCategory, setActiveCategory] = useState('All')
   const [query, setQuery] = useState('')
@@ -658,6 +696,6 @@ function EventDetailPage({ eventKey }) {
 
 export default function InnerPage({ page }) {
   useEffect(() => { window.scrollTo(0, 0) }, [page])
-  const content = page === 'vision' ? <VisionPage /> : page === 'international' ? <InternationalPage /> : page === 'special' ? <SpecialEducationPage /> : page === 'intra' || page === 'inter' ? <ProgrammesPage mode={page} /> : page === 'infrastructure' ? <InfrastructurePage /> : page === 'day' ? <DayInSchoolPage /> : page === 'announcements' ? <AnnouncementsPage /> : page === 'announcement-detail' ? <AnnouncementDetailPage /> : page === 'announcement-marksheet' ? <MarksheetAnnouncementPage /> : page === 'announcement-gurgaon' ? <GurgaonAnnouncementPage /> : page === 'admission' ? <AdmissionsPage /> : page === 'faqs' ? <FaqPage /> : page === 'news-events' ? <NewsEventsPage /> : page.startsWith('event-') ? <EventDetailPage eventKey={page} /> : <LearningPage />
+  const content = page === 'vision' ? <VisionPage /> : page === 'international' ? <InternationalPage /> : page === 'special' ? <SpecialEducationPage /> : page === 'intra' || page === 'inter' ? <ProgrammesPage mode={page} /> : page === 'infrastructure' ? <InfrastructurePage /> : page === 'day' ? <DayInSchoolPage /> : page === 'announcements' ? <AnnouncementsPage /> : page === 'announcement-detail' ? <AnnouncementDetailPage /> : page === 'announcement-marksheet' ? <MarksheetAnnouncementPage /> : page === 'announcement-gurgaon' ? <GurgaonAnnouncementPage /> : page === 'admission' ? <AdmissionsPage /> : page === 'login' ? <LoginPage /> : page === 'about' ? <AboutPage /> : page === 'faqs' ? <FaqPage /> : page === 'news-events' ? <NewsEventsPage /> : page.startsWith('event-') ? <EventDetailPage eventKey={page} /> : <LearningPage />
   return <main id="page-top"><PageHeader active={page} />{content}<PageFooter /></main>
 }

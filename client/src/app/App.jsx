@@ -55,7 +55,7 @@ function HomePage() {
       <div className="notice-bar">
         <div className="shell notice-inner">
           <p><span>Admissions</span> Applications for the 2026–27 academic year are now open.</p>
-          <a href="#admissions">View details <ArrowRight size={14} /></a>
+          <a href="/admission/">View details <ArrowRight size={14} /></a>
         </div>
       </div>
 
@@ -69,12 +69,11 @@ function HomePage() {
                 {item.children && <div className="nav-dropdown">{item.children.map((child) => <a href={child.href} key={child.label}>{child.label}<ArrowRight size={15} /></a>)}</div>}
               </div>
             ))}
-            <a className="nav-with-icon" href="#learning">More <ChevronDown size={14} /></a>
           </nav>
           <div className="nav-actions">
             <button className="icon-button" aria-label="Search"><Search size={19} /></button>
-            <a className="portal-link" href="#footer">School Portal <ExternalLink size={14} /></a>
-            <a className="button button--small" href="#admissions">Admissions</a>
+            <a className="portal-link" href="/login/">School Portal <ExternalLink size={14} /></a>
+            <a className="button button--small" href="/admission/">Admissions</a>
             <button className="menu-button" aria-label="Open navigation" aria-expanded={menuOpen} onClick={() => setMenuOpen(true)}><Menu size={24} /></button>
           </div>
         </div>
@@ -83,7 +82,7 @@ function HomePage() {
       <div className={`mobile-menu ${menuOpen ? 'mobile-menu--open' : ''}`} aria-hidden={!menuOpen}>
         <div className="mobile-menu__top"><Brand /><button aria-label="Close navigation" onClick={() => setMenuOpen(false)}><X size={26} /></button></div>
         <nav aria-label="Mobile navigation">
-          {[...navItems, { label: 'Admissions', href: '#admissions' }, { label: 'Contact', href: '#footer' }].map((item, index) => (
+          {[...navItems, { label: 'Admissions', href: '/admission/' }, { label: 'School Portal', href: '/login/' }, { label: 'Contact', href: '#footer' }].map((item, index) => (
             <a key={item.label} href={item.href} onClick={() => setMenuOpen(false)}><span>0{index + 1}</span>{item.label}<ArrowRight size={20} /></a>
           ))}
         </nav>
