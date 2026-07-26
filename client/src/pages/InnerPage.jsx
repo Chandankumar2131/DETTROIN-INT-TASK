@@ -53,7 +53,10 @@ function PageHeader({ active }) {
               <div className="nav-dropdown"><a href="/programmes/intra-school/">Intra-School <ArrowRight size={15} /></a><a href="/programmes/inter-school/">Inter-School <ArrowRight size={15} /></a></div>
             </div>
             <a href="#page-footer">News & Events</a>
-            <a className="nav-with-icon" href="#page-footer">More <ChevronDown size={14} /></a>
+            <div className="nav-item">
+              <a className={`nav-parent ${active === 'infrastructure' ? 'active' : ''}`} href="/infrastructure/">More <ChevronDown size={14} /></a>
+              <div className="nav-dropdown"><a href="/infrastructure/">Infrastructure <ArrowRight size={15} /></a><a href="#page-footer">A Day in School <ArrowRight size={15} /></a></div>
+            </div>
           </nav>
           <div className="nav-actions">
             <button className="icon-button" aria-label="Search"><Search size={19} /></button>
@@ -362,8 +365,57 @@ function ProgrammesPage({ mode }) {
   )
 }
 
+const campusSpaces = [
+  { icon: Brain, title: 'Science & technology', text: 'Well-equipped laboratories and connected classrooms support experimentation, inquiry and digital learning.' },
+  { icon: MessageCircle, title: 'Libraries', text: 'Two welcoming libraries offer quiet study, research resources and a culture of reading across the school.' },
+  { icon: Palette, title: 'Visual & performing arts', text: 'Specialised studios, performance spaces and an auditorium give ideas a place to become visible.' },
+  { icon: Trophy, title: 'Sport & movement', text: 'Fields, courts, a gymnasium and coaching facilities make physical wellbeing part of every school day.' },
+  { icon: Heart, title: 'Therapy & wellbeing', text: 'Purpose-designed occupational therapy, sensory integration and medical spaces support individual needs.' },
+  { icon: Users, title: 'Community spaces', text: 'Courtyards, gardens, play areas and mixed-use spaces encourage encounter, conversation and belonging.' },
+]
+
+function InfrastructurePage() {
+  return (
+    <>
+      <section className="inner-hero infrastructure-hero">
+        <div className="inner-hero__image" /><div className="inner-hero__shade" />
+        <div className="shell inner-hero__content">
+          <span className="page-kicker">Our Campus · Vasant Kunj</span>
+          <h1>A campus built<br /><em>around childhood.</em></h1>
+          <p>Eight green acres where classrooms, courtyards, gardens and playing fields come together as one continuous learning environment.</p>
+        </div>
+        <div className="inner-hero__index"><span>07</span><i /><small>Infrastructure</small></div>
+      </section>
+
+      <section className="campus-intro">
+        <div className="shell campus-intro__grid">
+          <div><span className="eyebrow">Space to grow</span><h2>The entire campus is <em>a classroom.</em></h2></div>
+          <div><p className="manifesto__lead">Planned spaces for focused activity sit alongside flexible, mixed-use areas that invite curiosity, movement and unexpected connections.</p><p>Sports fields, gardens, play areas and courtyards are home to more than 400 species of trees and plants. The entire campus is accessible and challenge compliant.</p></div>
+        </div>
+        <div className="shell campus-numbers"><div><strong>8</strong><span>Acres of campus</span></div><div><strong>4</strong><span>Acres of built space</span></div><div><strong>400+</strong><span>Plant species</span></div><div><strong>100%</strong><span>Wireless enabled</span></div></div>
+      </section>
+
+      <section className="spaces-section">
+        <div className="shell"><div className="special-heading"><div><span className="eyebrow eyebrow--light">Learning spaces</span><h2>Purposeful places.<br /><em>Open possibilities.</em></h2></div><p>Every environment is designed to support a different way of learning—from quiet concentration and scientific enquiry to collaboration, performance and play.</p></div><div className="spaces-grid">{campusSpaces.map(({ icon: Icon, title, text }, index) => <article key={title}><div><Icon size={25} /><span>0{index + 1}</span></div><h3>{title}</h3><p>{text}</p></article>)}</div></div>
+      </section>
+
+      <section className="green-campus">
+        <div className="green-campus__image" />
+        <div className="green-campus__copy"><span className="eyebrow">A living landscape</span><h2>Green space is not a backdrop. <em>It is part of learning.</em></h2><p>Shaded paths, planted courtyards and open fields create opportunities to observe changing seasons, learn from nature and find moments of calm throughout the day.</p><div className="tag-row"><span>Gardens</span><span>Courtyards</span><span>Playing fields</span><span>Outdoor learning</span></div></div>
+      </section>
+
+      <section className="safety-section">
+        <div className="shell safety-grid"><div className="safety-heading"><span className="eyebrow">Health, safety & access</span><h2>Care built into <em>every detail.</em></h2><p>Healthy, secure and accessible environments allow students and teachers to focus on what matters most: learning and belonging.</p></div><div className="safety-list"><article><ShieldCheck size={25} /><div><h3>Health & medical care</h3><p>Two equipped medical rooms, three qualified nurses, a paediatrician on call and regular health checks.</p></div></article><article><Target size={25} /><div><h3>Prepared & protected</h3><p>First-responder training, fire and earthquake drills, CCTV, air purification and cyber-safety education.</p></div></article><article><MapPin size={25} /><div><h3>Responsible transport</h3><p>School transport follows applicable Delhi and national safety guidance, supported by encouraged carpooling.</p></div></article></div></div>
+      </section>
+
+      <section className="campus-gallery"><div className="gallery-one" /><div className="gallery-two" /><div className="gallery-title"><span>Explore the campus</span><h2>Spaces that feel<br /><em>like Vasant Valley.</em></h2></div></section>
+      <section className="next-page"><div className="shell"><span>Continue exploring</span><a href="/learning-experience/"><strong>The Learning Experience</strong><ArrowRight /></a></div></section>
+    </>
+  )
+}
+
 export default function InnerPage({ page }) {
   useEffect(() => { window.scrollTo(0, 0) }, [page])
-  const content = page === 'vision' ? <VisionPage /> : page === 'international' ? <InternationalPage /> : page === 'special' ? <SpecialEducationPage /> : page === 'intra' || page === 'inter' ? <ProgrammesPage mode={page} /> : <LearningPage />
+  const content = page === 'vision' ? <VisionPage /> : page === 'international' ? <InternationalPage /> : page === 'special' ? <SpecialEducationPage /> : page === 'intra' || page === 'inter' ? <ProgrammesPage mode={page} /> : page === 'infrastructure' ? <InfrastructurePage /> : <LearningPage />
   return <main id="page-top"><PageHeader active={page} />{content}<PageFooter /></main>
 }

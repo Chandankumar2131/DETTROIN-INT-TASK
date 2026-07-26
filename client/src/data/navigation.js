@@ -2,6 +2,7 @@ export const primaryNavigation = [
   { label: 'Our School', href: '#about', children: [
     { label: 'Vision & Philosophy', href: '/vision-philosophy/' },
     { label: 'About Vasant Valley', href: '#about' },
+    { label: 'Infrastructure', href: '/infrastructure/' },
   ] },
   { label: 'Learning', href: '#learning', children: [
     { label: 'The Learning Experience', href: '/learning-experience/' },
@@ -19,6 +20,6 @@ export const fullNavigation = [
   ['Home', '/'], ['Vision & Philosophy', '/vision-philosophy/'],
   ['The Learning Experience', '/learning-experience/'], ['International Curriculum', '/international-curriculum/'],
   ['Special Education Needs', '/special-education-needs/'], ['Intra-School Programmes', '/programmes/intra-school/'],
-  ['Inter-School Programmes', '/programmes/inter-school/'], ['Infrastructure', '#'], ['A Day in School', '#'],
+  ['Inter-School Programmes', '/programmes/inter-school/'], ['Infrastructure', '/infrastructure/'], ['A Day in School', '#'],
   ['Announcements', '#'], ['News & Events', '#'], ['Admissions', '#'],
 ]
