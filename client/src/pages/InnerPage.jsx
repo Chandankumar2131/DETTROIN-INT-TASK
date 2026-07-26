@@ -54,7 +54,7 @@ function PageHeader({ active }) {
             </div>
             <div className="nav-item">
               <a href="/announcements/" className={`nav-parent ${active.startsWith('announcement') ? 'active' : ''}`}>News & Events <ChevronDown size={14} /></a>
-              <div className="nav-dropdown"><a href="/announcements/">Announcements <ArrowRight size={15} /></a><a href="#page-footer">News & Events <ArrowRight size={15} /></a></div>
+              <div className="nav-dropdown"><a href="/announcements/">Announcements <ArrowRight size={15} /></a><a href="/news-events/">News & Events <ArrowRight size={15} /></a></div>
             </div>
             <div className="nav-item">
               <a className={`nav-parent ${['infrastructure', 'day'].includes(active) ? 'active' : ''}`} href="/infrastructure/">More <ChevronDown size={14} /></a>
@@ -542,8 +542,99 @@ function GurgaonAnnouncementPage() {
   )
 }
 
+const faqItems = [
+  { category: 'Academics', question: 'Which examination boards is Vasant Valley School affiliated with?', answer: 'Vasant Valley School is affiliated with the Central Board of Secondary Education (CBSE). It is also a registered Cambridge International School offering Cambridge IGCSE and Cambridge AS & A Level programmes.' },
+  { category: 'Admissions', question: 'When does the admission process for Pre-School begin?', answer: 'The Pre-School admission process generally begins in December. Details and dates are published according to the timeline prescribed by the Directorate of Education.' },
+  { category: 'School Life', question: 'What is the academic year of the school?', answer: 'The academic year runs from April to March and is divided into four learning cycles: April–May, July–September, October–December and January–March.' },
+  { category: 'School Life', question: 'What are the school timings?', answer: 'The regular school day begins at 8:00 a.m. and ends at 3:00 p.m. Optional after-school camps and programmes are available for eligible year groups.' },
+  { category: 'School Life', question: 'What is the school uniform?', answer: 'Girls wear the prescribed cotton salwar-kameez and boys wear cotton trousers and a shirt. In winter, students wear the school’s maroon sweater. Uniforms are available from the campus uniform shop.' },
+  { category: 'Admissions', question: 'How do I apply for admission for my child?', answer: 'Applications can be sent to admissions@vasantvalley.org. Admission to each year group depends on availability, and the application should be refreshed every three months.' },
+  { category: 'Admissions', question: 'When can prospective parents visit the school?', answer: 'Prospective parents can register for an Open Day and take a guided campus tour. Open Day announcements and registration details are published on the school website.' },
+  { category: 'Academics', question: 'Which subjects are offered under the CBSE curriculum?', answer: 'The school offers a wide selection across languages, mathematics, sciences, humanities, commerce, computer studies, visual arts, music and physical education. Subject availability varies by class and elective group.' },
+  { category: 'Academics', question: 'Which subjects are offered under Cambridge IGCSE?', answer: 'Options include First Language English, Hindi or Spanish, Mathematics, Biology, Physics, Chemistry, Environmental Management, Global Perspectives, History, Economics, Art and Design, Computer Science, ICT and Business Studies.' },
+  { category: 'General', question: 'Is Vasant Valley School RTE compliant?', answer: 'Yes. Vasant Valley School is committed to compliance with the Right of Children to Free and Compulsory Education Act and applicable government requirements.' },
+  { category: 'General', question: 'Does Vasant Valley School offer hostel facilities?', answer: 'No. Vasant Valley is a day school and does not offer hostel or residential facilities.' },
+  { category: 'General', question: 'How can I apply for a job at Vasant Valley School?', answer: 'Applicants may submit an updated résumé through the Careers page or email it to careers@vasantvalley.edu.in. The school contacts suitable candidates when relevant vacancies arise.' },
+  { category: 'Fees', question: 'What is the procedure for payment of fees?', answer: 'School dues may be paid through the authorised online parent portal or using the payment methods communicated by the accounts office. Please contact the school for current instructions.' },
+  { category: 'General', question: 'Is there another Vasant Valley campus?', answer: 'A new Vasant Valley School campus in Gurgaon has been announced. It will carry forward the founding school’s child-centred values while developing its own learning community.' },
+]
+
+function FaqPage() {
+  const [activeCategory, setActiveCategory] = useState('All')
+  const [query, setQuery] = useState('')
+  const [openFaq, setOpenFaq] = useState(0)
+  const categories = ['All', 'Admissions', 'Academics', 'School Life', 'Fees', 'General']
+  const visible = faqItems.filter(item => (activeCategory === 'All' || item.category === activeCategory) && `${item.question} ${item.answer}`.toLowerCase().includes(query.toLowerCase()))
+  return <>
+    <section className="faq-hero"><div className="shell"><span className="page-kicker">Help centre</span><h1>Frequently Asked <em>Questions</em></h1><p>Quick answers about admissions, academics, school life and practical information for families.</p><label><Search size={19} /><input value={query} onChange={event => setQuery(event.target.value)} placeholder="Search questions…" aria-label="Search frequently asked questions" /></label></div></section>
+    <section className="faq-section"><div className="shell faq-layout"><aside><span>Browse by topic</span>{categories.map(category => <button className={activeCategory === category ? 'active' : ''} onClick={() => { setActiveCategory(category); setOpenFaq(null) }} key={category}>{category}<small>{category === 'All' ? faqItems.length : faqItems.filter(item => item.category === category).length}</small></button>)}</aside><div className="faq-content"><div className="faq-content-head"><span>{visible.length} answers</span><p>Select a question to view its answer.</p></div><div className="faq-list">{visible.map((item, index) => <article className={openFaq === index ? 'open' : ''} key={item.question}><button aria-expanded={openFaq === index} onClick={() => setOpenFaq(openFaq === index ? null : index)}><span><small>{item.category}</small>{item.question}</span><ChevronDown size={20} /></button><div className="faq-answer"><p>{item.answer}</p></div></article>)}{visible.length === 0 && <div className="faq-empty"><Search size={28} /><h3>No matching questions</h3><p>Try another keyword or browse all topics.</p></div>}</div></div></div></section>
+    <section className="faq-contact"><div className="shell"><div><span className="eyebrow eyebrow--light">Still need help?</span><h2>Ask the school directly.</h2></div><p>Our office team can guide you to the right department for admissions, academics, transport or accounts.</p><a className="button button--light" href="mailto:info@vasantvalley.edu.in">Contact us <Mail size={16} /></a></div></section>
+  </>
+}
+
+const schoolEvents = [
+  { type: 'Sports', date: '13–15 July 2026', title: 'Inter-School Tennis Zonal Tournament 2026', excerpt: 'Our Under-14 Girls and Under-17 teams delivered an outstanding performance at the zonal table tennis tournament.', href: '/news-and-events/inter-school-tennis-zonal-tournament-2026/', image: 'https://images.unsplash.com/photo-1534158914592-062992fbe900?auto=format&fit=crop&w=1200&q=86' },
+  { type: 'Academic', date: '17 July 2026', title: 'The 23rd Edition of Laissez Faire', excerpt: 'Finding “We” in a World of “Me” celebrated empathy, collaboration, dialogue and thoughtful problem-solving.', href: '/news-and-events/the-23rd-edition-of-laissez-faire/', image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=86' },
+  { type: 'Technology', date: '14–18 July 2026', title: '21st Edition of Suryodaya IT Fest 2026', excerpt: 'Three events, three podium finishes and one proud moment for our student technology teams in Gwalior.', href: '/news-and-events/21st-edition-of-suryodaya-it-fest-2026/', image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=86' },
+]
+
+const eventDetails = {
+  'event-tennis': {
+    type: 'Sports Achievement', date: '13–15 July 2026', title: 'Inter-School Tennis Zonal Tournament 2026',
+    intro: 'Our Under-14 Girls and Under-17 teams participated in the Inter-School Tennis Zonal Tournament held at GBSSS JARI, Pusa Road.',
+    quote: 'A confident performance built on discipline, teamwork and sporting spirit.',
+    sections: [
+      ['Under-14 Girls Team — First Place', 'Alvira Seth, Nandini Raj and Nandini Sahib represented the school with focus and consistency.'],
+      ['Under-17 Team — Bronze Place', 'Vandana Puri, Aaditri Trivedi and Naintara Sitaram secured a proud podium finish.'],
+    ],
+    images: ['https://images.unsplash.com/photo-1599474924187-334a4ae5bd3c?auto=format&fit=crop&w=900&q=86','https://images.unsplash.com/photo-1542144582-1ba00456b5e3?auto=format&fit=crop&w=900&q=86'],
+  },
+  'event-laissez': {
+    type: 'Academic Festival', date: '17 July 2026', title: 'The 23rd Edition of Laissez Faire',
+    intro: 'This year’s theme, “Finding We in a World of Me”, celebrated empathy, collaboration and dialogue in an increasingly interconnected world.',
+    quote: 'Meaningful progress is achieved by listening, understanding different perspectives and moving forward together.',
+    sections: [
+      ['Beyond the Frame: The Other Side', 'Participants created short films inspired by real human experiences, exploring empathy, identity, belonging and connection.'],
+      ['Humanity Unmuted', 'Teams designed awareness campaigns showing how contemporary conflicts affect historical and cultural heritage.'],
+      ['The Expansion Lab', 'Students redesigned a start-up’s international strategy while considering social, environmental and economic contexts.'],
+      ['Social Science Quiz', 'A lively challenge that rewarded awareness, careful reasoning and collaborative problem-solving.'],
+    ],
+    images: ['https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&w=900&q=86','https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=900&q=86','https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=900&q=86','https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?auto=format&fit=crop&w=900&q=86'],
+  },
+  'event-suryodaya': {
+    type: 'Technology Achievement', date: '14–18 July 2026', title: '21st Edition of Suryodaya IT Fest 2026',
+    intro: 'Our students represented Vasant Valley School at the Suryodaya IT Fest hosted by The Scindia School, Fort Gwalior.',
+    quote: 'Three events. Three podium finishes. One proud moment.',
+    sections: [
+      ['Retro View — Third Position', 'Donna Chhatwal represented the school in the photography event with a thoughtful visual narrative.'],
+      ['Robo Rumble — First Position', 'Bickram Singh Laalie and Keshav Rana combined engineering, coding and teamwork to win the robotics event.'],
+      ['Mind Mash — Third Position', 'Laghima Chopra and Vedang Sasturkar demonstrated strong knowledge and composure in the IT quiz.'],
+    ],
+    images: ['https://images.unsplash.com/photo-1535378917042-10a22c95931a?auto=format&fit=crop&w=900&q=86','https://images.unsplash.com/photo-1561557944-6e7860d1a7eb?auto=format&fit=crop&w=900&q=86','https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=900&q=86','https://images.unsplash.com/photo-1516321165247-4aa89a48be28?auto=format&fit=crop&w=900&q=86'],
+  },
+}
+
+function NewsEventsPage() {
+  return <>
+    <section className="news-events-hero"><div className="shell"><span className="page-kicker">Life at Vasant Valley</span><h1>News &amp; Events</h1><p>Stories of curiosity, creativity, competition and community from across our campus.</p></div></section>
+    <section className="archive-filter"><div className="shell"><span>Browse the archive</span><div className="year-row">{['2026','2025','2024','2023','2022','2021'].map((year, i) => <button className={i === 0 ? 'active' : ''} key={year}>{year}</button>)}</div><div className="month-row">{['January','February','March','April','May','June','July'].map(month => <button className={month === 'July' ? 'active' : ''} key={month}>{month}</button>)}</div></div></section>
+    <section className="events-list"><div className="shell"><div className="events-heading"><div><span className="eyebrow">July 2026</span><h2>Latest from <em>our community</em></h2></div><p>Explore achievements, festivals and learning experiences that bring our school values to life.</p></div><div className="event-card-grid">{schoolEvents.map((event, index) => <article key={event.title}><a className="event-card-image" href={event.href}><img src={event.image} alt="" /><span>{String(index + 1).padStart(2,'0')}</span></a><div><small>{event.type} · {event.date}</small><h3><a href={event.href}>{event.title}</a></h3><p>{event.excerpt}</p><a className="event-read" href={event.href}>Read story <ArrowRight size={17} /></a></div></article>)}</div></div></section>
+  </>
+}
+
+function EventDetailPage({ eventKey }) {
+  const event = eventDetails[eventKey]
+  const paths = schoolEvents.map(item => item.href)
+  const index = ['event-tennis','event-laissez','event-suryodaya'].indexOf(eventKey)
+  return <>
+    <section className="event-detail-hero"><div className="shell"><a href="/news-events/">← News &amp; Events</a><span>{event.type} · {event.date}</span><h1>{event.title}</h1><p>{event.intro}</p></div></section>
+    <article className="event-story"><div className="shell event-story-grid"><aside><strong>Event details</strong><span>{event.date}</span><span>Vasant Valley School</span></aside><div className="event-story-copy"><p className="event-lead">{event.intro}</p><blockquote>{event.quote}</blockquote>{event.sections.map(([title, copy]) => <section key={title}><h2>{title}</h2><p>{copy}</p></section>)}</div></div><div className="shell event-gallery">{event.images.map((image, i) => <figure key={image}><img src={image} alt={`${event.title} gallery ${i + 1}`} /></figure>)}</div></article>
+    <nav className="event-pagination"><div className="shell"><a href={paths[(index + paths.length - 1) % paths.length]}>← Previous event</a><a href={paths[(index + 1) % paths.length]}>Next event →</a></div></nav>
+  </>
+}
+
 export default function InnerPage({ page }) {
   useEffect(() => { window.scrollTo(0, 0) }, [page])
-  const content = page === 'vision' ? <VisionPage /> : page === 'international' ? <InternationalPage /> : page === 'special' ? <SpecialEducationPage /> : page === 'intra' || page === 'inter' ? <ProgrammesPage mode={page} /> : page === 'infrastructure' ? <InfrastructurePage /> : page === 'day' ? <DayInSchoolPage /> : page === 'announcements' ? <AnnouncementsPage /> : page === 'announcement-detail' ? <AnnouncementDetailPage /> : page === 'announcement-marksheet' ? <MarksheetAnnouncementPage /> : page === 'announcement-gurgaon' ? <GurgaonAnnouncementPage /> : <LearningPage />
+  const content = page === 'vision' ? <VisionPage /> : page === 'international' ? <InternationalPage /> : page === 'special' ? <SpecialEducationPage /> : page === 'intra' || page === 'inter' ? <ProgrammesPage mode={page} /> : page === 'infrastructure' ? <InfrastructurePage /> : page === 'day' ? <DayInSchoolPage /> : page === 'announcements' ? <AnnouncementsPage /> : page === 'announcement-detail' ? <AnnouncementDetailPage /> : page === 'announcement-marksheet' ? <MarksheetAnnouncementPage /> : page === 'announcement-gurgaon' ? <GurgaonAnnouncementPage /> : page === 'faqs' ? <FaqPage /> : page === 'news-events' ? <NewsEventsPage /> : page.startsWith('event-') ? <EventDetailPage eventKey={page} /> : <LearningPage />
   return <main id="page-top"><PageHeader active={page} />{content}<PageFooter /></main>
 }

@@ -221,6 +221,7 @@ function App() {
         <Route path="/news-and-events/inter-school-tennis-zonal-tournament-2026/" element={<InnerPage page="event-tennis" />} />
         <Route path="/news-and-events/the-23rd-edition-of-laissez-faire/" element={<InnerPage page="event-laissez" />} />
         <Route path="/news-and-events/21st-edition-of-suryodaya-it-fest-2026/" element={<InnerPage page="event-suryodaya" />} />
+        <Route path="/faqs/" element={<InnerPage page="faqs" />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
