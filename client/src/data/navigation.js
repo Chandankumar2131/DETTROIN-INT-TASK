@@ -20,6 +20,6 @@ export const fullNavigation = [
   ['Home', '/'], ['Vision & Philosophy', '/vision-philosophy/'],
   ['The Learning Experience', '/learning-experience/'], ['International Curriculum', '/international-curriculum/'],
   ['Special Education Needs', '/special-education-needs/'], ['Intra-School Programmes', '/programmes/intra-school/'],
-  ['Inter-School Programmes', '/programmes/inter-school/'], ['Infrastructure', '/infrastructure/'], ['A Day in School', '#'],
+  ['Inter-School Programmes', '/programmes/inter-school/'], ['Infrastructure', '/infrastructure/'], ['A Day in School', '/a-day-in-school/'],
   ['Announcements', '#'], ['News & Events', '#'], ['Admissions', '#'],
 ]

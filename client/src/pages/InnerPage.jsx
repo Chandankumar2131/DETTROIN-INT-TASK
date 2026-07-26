@@ -54,8 +54,8 @@ function PageHeader({ active }) {
             </div>
             <a href="#page-footer">News & Events</a>
             <div className="nav-item">
-              <a className={`nav-parent ${active === 'infrastructure' ? 'active' : ''}`} href="/infrastructure/">More <ChevronDown size={14} /></a>
-              <div className="nav-dropdown"><a href="/infrastructure/">Infrastructure <ArrowRight size={15} /></a><a href="#page-footer">A Day in School <ArrowRight size={15} /></a></div>
+              <a className={`nav-parent ${['infrastructure', 'day'].includes(active) ? 'active' : ''}`} href="/infrastructure/">More <ChevronDown size={14} /></a>
+              <div className="nav-dropdown"><a href="/infrastructure/">Infrastructure <ArrowRight size={15} /></a><a href="/a-day-in-school/">A Day in School <ArrowRight size={15} /></a></div>
             </div>
           </nav>
           <div className="nav-actions">
@@ -414,8 +414,55 @@ function InfrastructurePage() {
   )
 }
 
+const daySchedule = [
+  ['08:00', 'Arrive & connect', 'The day begins in classrooms and alcoves—welcoming spaces for conversation, planning and settling in.'],
+  ['08:00–09:35', 'Learning block one', 'Focused academic experiences shaped for each year group and designed around active participation.'],
+  ['09:35', 'Breakfast together', 'A shared school meal and the first pause of the day, announced by music in the corridors.'],
+  ['09:50–11:10', 'Learning block two', 'Inquiry, discussion, laboratories, studios and movement create varied ways to understand.'],
+  ['11:10', 'Midday break', 'Time to move, play, read, meet friends and return to class refreshed.'],
+  ['11:20–13:20', 'Learning block three', 'Longer sessions allow projects, practical work and interdisciplinary ideas to develop.'],
+  ['13:20', 'Lunch & community', 'Students and teachers share lunch provided by the school, with menus available to families.'],
+  ['13:45–15:00', 'Learning block four', 'Reflection, application and creative experiences bring the formal school day to a close.'],
+]
+
+function DayInSchoolPage() {
+  return (
+    <>
+      <section className="inner-hero day-hero">
+        <div className="inner-hero__image" /><div className="inner-hero__shade" />
+        <div className="shell inner-hero__content">
+          <span className="page-kicker">A Day at Vasant Valley · 8:00–3:00</span>
+          <h1>Every day has<br /><em>its own rhythm.</em></h1>
+          <p>Learning moves inside and outside the classroom—through focused lessons, shared meals, conversation, play, creative work and discovery.</p>
+        </div>
+        <div className="inner-hero__index"><span>08</span><i /><small>A day in school</small></div>
+      </section>
+
+      <section className="day-intro">
+        <div className="shell manifesto__grid"><div><span className="eyebrow">Dynamic by design</span><h2>A full day of <em>learning and belonging.</em></h2></div><div><p className="manifesto__lead">A typical day at Vasant Valley is invigorating, social and purposeful—combining structure with the freedom to explore.</p><p>Each year group has three sections of approximately 30 students. Classrooms are organised around shared alcoves that become hubs for connection, collaboration and everyday community.</p></div></div>
+      </section>
+
+      <section className="day-timeline">
+        <div className="shell"><div className="timeline-heading"><span className="eyebrow eyebrow--light">The daily schedule</span><h2>Four learning blocks.<br /><em>Three restorative breaks.</em></h2><p>Lesson lengths vary from 20 to 60 minutes by year group. There are no bells—the sound of music in the corridors signals a change in rhythm.</p></div><div className="schedule-list">{daySchedule.map(([time, title, text], index) => <article key={time}><span>{String(index + 1).padStart(2, '0')}</span><time>{time}</time><div><h3>{title}</h3><p>{text}</p></div></article>)}</div></div>
+      </section>
+
+      <section className="day-feature">
+        <div className="day-feature__image" />
+        <div className="day-feature__copy"><span className="eyebrow">Shared meals</span><h2>Food, friendship and a moment to <em>pause.</em></h2><p>Breakfast and lunch are provided for every student. These shared meals are part of the social fabric of school—a chance to slow down, talk and reconnect before the next experience begins.</p><div className="meal-points"><span><Heart size={19} /> Nutritious school meals</span><span><Users size={19} /> Everyone eats together</span><span><ShieldCheck size={19} /> Menus shared with families</span></div></div>
+      </section>
+
+      <section className="after-school">
+        <div className="shell after-school__grid"><div><span className="eyebrow">After 3:00 pm</span><h2>The day can keep <em>unfolding.</em></h2><p>Students from Classes 3 to 12 may stay for optional camps in sport and the arts. Led by experienced practitioners, these programmes allow children to deepen skills in areas that genuinely interest them.</p><a className="button" href="/programmes/intra-school/">Explore programmes <ArrowRight size={16} /></a></div><div className="after-school__cards"><article><Trophy size={27} /><h3>Sports camps</h3><p>Focused coaching, practice and progression across a range of disciplines.</p></article><article><Palette size={27} /><h3>Arts camps</h3><p>Visual and performing arts experiences that turn curiosity into craft.</p></article></div></div>
+      </section>
+
+      <section className="day-quote"><div className="shell"><span>One small Vasant Valley tradition</span><blockquote>“You know it is break time when music begins playing in the corridors.”</blockquote></div></section>
+      <section className="next-page"><div className="shell"><span>See where the day unfolds</span><a href="/infrastructure/"><strong>Explore Our Campus</strong><ArrowRight /></a></div></section>
+    </>
+  )
+}
+
 export default function InnerPage({ page }) {
   useEffect(() => { window.scrollTo(0, 0) }, [page])
-  const content = page === 'vision' ? <VisionPage /> : page === 'international' ? <InternationalPage /> : page === 'special' ? <SpecialEducationPage /> : page === 'intra' || page === 'inter' ? <ProgrammesPage mode={page} /> : page === 'infrastructure' ? <InfrastructurePage /> : <LearningPage />
+  const content = page === 'vision' ? <VisionPage /> : page === 'international' ? <InternationalPage /> : page === 'special' ? <SpecialEducationPage /> : page === 'intra' || page === 'inter' ? <ProgrammesPage mode={page} /> : page === 'infrastructure' ? <InfrastructurePage /> : page === 'day' ? <DayInSchoolPage /> : <LearningPage />
   return <main id="page-top"><PageHeader active={page} />{content}<PageFooter /></main>
 }
