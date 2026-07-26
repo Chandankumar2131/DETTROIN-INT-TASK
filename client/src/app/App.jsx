@@ -208,6 +208,9 @@ function App() {
         <Route path="/vision-philosophy/" element={<InnerPage page="vision" />} />
         <Route path="/learning-experience/" element={<InnerPage page="learning" />} />
         <Route path="/international-curriculum/" element={<InnerPage page="international" />} />
+        <Route path="/special-education-needs/" element={<InnerPage page="special" />} />
+        <Route path="/programmes/intra-school/" element={<InnerPage page="intra" />} />
+        <Route path="/programmes/inter-school/" element={<InnerPage page="inter" />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>

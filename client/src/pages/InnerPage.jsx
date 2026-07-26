@@ -45,10 +45,14 @@ function PageHeader({ active }) {
               <div className="nav-dropdown"><a href="/vision-philosophy/">Vision & Philosophy <ArrowRight size={15} /></a><a href="#page-footer">About Vasant Valley <ArrowRight size={15} /></a></div>
             </div>
             <div className="nav-item">
-              <a href="/learning-experience/" className={`nav-parent ${active === 'learning' || active === 'international' ? 'active' : ''}`}>Learning <ChevronDown size={14} /></a>
-              <div className="nav-dropdown"><a href="/learning-experience/">The Learning Experience <ArrowRight size={15} /></a><a href="/international-curriculum/">International Curriculum <ArrowRight size={15} /></a></div>
+              <a href="/learning-experience/" className={`nav-parent ${['learning', 'international', 'special'].includes(active) ? 'active' : ''}`}>Learning <ChevronDown size={14} /></a>
+              <div className="nav-dropdown"><a href="/learning-experience/">The Learning Experience <ArrowRight size={15} /></a><a href="/international-curriculum/">International Curriculum <ArrowRight size={15} /></a><a href="/special-education-needs/">Special Education Needs <ArrowRight size={15} /></a></div>
             </div>
-            <a href="#page-footer">Student Life</a><a href="#page-footer">News & Events</a>
+            <div className="nav-item">
+              <a href="/programmes/intra-school/" className={`nav-parent ${['intra', 'inter'].includes(active) ? 'active' : ''}`}>Programmes <ChevronDown size={14} /></a>
+              <div className="nav-dropdown"><a href="/programmes/intra-school/">Intra-School <ArrowRight size={15} /></a><a href="/programmes/inter-school/">Inter-School <ArrowRight size={15} /></a></div>
+            </div>
+            <a href="#page-footer">News & Events</a>
             <a className="nav-with-icon" href="#page-footer">More <ChevronDown size={14} /></a>
           </nav>
           <div className="nav-actions">
@@ -250,8 +254,116 @@ function InternationalPage() {
   )
 }
 
+const supportServices = [
+  { icon: Users, title: 'Special education', text: 'Individualised classroom support and adapted learning strategies led by trained special educators.' },
+  { icon: Target, title: 'Occupational therapy', text: 'Purpose-built spaces and evidence-informed support for sensory integration and everyday skills.' },
+  { icon: Heart, title: 'Physiotherapy', text: 'Movement-based intervention that develops mobility, coordination and physical confidence.' },
+  { icon: MessageCircle, title: 'Language therapy', text: 'Personalised communication support that helps every child participate and express themselves.' },
+  { icon: Brain, title: 'Psychological support', text: 'Thoughtful emotional and behavioural guidance for students, families and classroom teams.' },
+  { icon: Sparkles, title: 'Dyslexia intervention', text: 'Structured remediation and strategies for specific learning differences and literacy development.' },
+]
+
+function SpecialEducationPage() {
+  return (
+    <>
+      <section className="inner-hero special-hero">
+        <div className="inner-hero__image" /><div className="inner-hero__shade" />
+        <div className="shell inner-hero__content">
+          <span className="page-kicker">Inclusion at Vasant Valley</span>
+          <h1>Every learner seen.<br /><em>Every strength valued.</em></h1>
+          <p>An inclusive school community where individual differences are understood, supported and celebrated with dignity.</p>
+        </div>
+        <div className="inner-hero__index"><span>04</span><i /><small>Special education needs</small></div>
+      </section>
+
+      <section className="special-intro">
+        <div className="shell manifesto__grid">
+          <div><span className="eyebrow">Our inclusive model</span><h2>Belonging begins with being <em>understood.</em></h2></div>
+          <div><p className="manifesto__lead">Students with additional needs learn within the general education classroom, supported by a multidisciplinary team and an individual plan.</p><p>Special educators, occupational therapists, physiotherapists, language therapists, psychologists and a dyslexia therapist work together during school hours—around each child’s strengths, affinities and goals.</p></div>
+        </div>
+      </section>
+
+      <section className="support-section">
+        <div className="shell">
+          <div className="special-heading"><div><span className="eyebrow eyebrow--light">A multidisciplinary team</span><h2>Support that surrounds <em>the whole child.</em></h2></div><p>Expertise is brought together, not placed in silos. Teachers, therapists and families collaborate so support feels consistent, connected and part of everyday school life.</p></div>
+          <div className="support-grid">{supportServices.map(({ icon: Icon, title, text }, index) => <article key={title}><div><Icon size={26} /><span>0{index + 1}</span></div><h3>{title}</h3><p>{text}</p></article>)}</div>
+        </div>
+      </section>
+
+      <section className="iep-section">
+        <div className="iep-image" />
+        <div className="iep-content"><span className="eyebrow">Individual education plans</span><h2>A plan as individual as <em>the learner.</em></h2><p>Each child has an Individual Education Plan shaped around their present skills, interests and developmental priorities. Goals are specific, measurable and regularly reviewed with everyone involved.</p><div className="iep-steps"><span><strong>01</strong>Understand strengths</span><span><strong>02</strong>Set meaningful goals</span><span><strong>03</strong>Support & adapt</span><span><strong>04</strong>Review together</span></div></div>
+      </section>
+
+      <section className="early-section">
+        <div className="shell early-grid"><div><span className="eyebrow">Early intervention</span><h2>Meeting children <em>where they are.</em></h2><p>Our Early Intervention Programme supports younger children who are not yet ready for a full in-class experience. A calm, carefully structured environment helps them build readiness, independence and confidence at their own pace.</p></div><div className="early-note"><ShieldCheck size={37} /><strong>Accessible by design</strong><p>The campus and learning environment are designed to reduce barriers and enable meaningful participation for every student.</p></div></div>
+      </section>
+
+      <section className="special-quote"><div className="shell"><Heart size={34} /><blockquote>“Inclusion is not simply a place in the classroom. It is the experience of being known, heard and able to participate.”</blockquote><a className="button button--light" href="#page-footer">Speak with our team <ArrowRight size={16} /></a></div></section>
+
+      <section className="next-page"><div className="shell"><span>Explore our wider approach</span><a href="/learning-experience/"><strong>The Learning Experience</strong><ArrowRight /></a></div></section>
+    </>
+  )
+}
+
+const intraActivities = [
+  { icon: Heart, title: 'Pastoral care', text: 'Strong bonds with class teachers and pastoral tutors create safety, trust and belonging.' },
+  { icon: Users, title: 'Outreach', text: 'Students serve communities through teaching, road safety, environmental action and exchange.' },
+  { icon: Palette, title: 'Arts', text: 'Visual and performing arts develop expression, cultural understanding and creative confidence.' },
+  { icon: Brain, title: 'Life skills', text: 'Problem solving, decision making, resilience and communication prepare students for life.' },
+  { icon: Trophy, title: 'Sports', text: 'Dedicated physical education, coaching, house competitions and annual athletics build teamwork.' },
+  { icon: Sparkles, title: 'Hobbies & clubs', text: 'Weekly opportunities help students discover interests and pursue skills beyond academics.' },
+]
+
+const interEvents = [
+  ['Drama Festival', 'A three-day celebration of theatre, dance and music that brings schools together to share ideas and creative practice.'],
+  ['India Today Debate', 'Young debaters from India and abroad deliberate on contemporary issues through rigorous parliamentary debate.'],
+  ['Inter-School Sports', 'Athletics, basketball, football, hockey, tennis and cricket tournaments across age groups and categories.'],
+  ['Tech VViz', 'A technology festival featuring digital imaging, music creation, quizzes, gaming and multimedia challenges.'],
+  ['Synapse', 'An annual science event inviting students to investigate their environment through experiments and challenges.'],
+  ['Laissez Faire', 'Collaborative teams apply social-science thinking to real-world case studies and action-oriented solutions.'],
+  ['Art Marathon', 'A two-day studio experience where students create, collaborate and exhibit work with practising artists.'],
+  ['Speakers’ Forum', 'Literary and imaginative platforms for middle-school students, from book discussion to slam poetry.'],
+]
+
+function ProgrammesPage({ mode }) {
+  const isIntra = mode === 'intra'
+  return (
+    <>
+      <section className={`inner-hero programmes-hero ${isIntra ? 'intra-hero' : 'inter-hero'}`}>
+        <div className="inner-hero__image" /><div className="inner-hero__shade" />
+        <div className="shell inner-hero__content">
+          <span className="page-kicker">Programmes · {isIntra ? 'Within our community' : 'Beyond our campus'}</span>
+          <h1>{isIntra ? <>Discover a passion.<br /><em>Grow into yourself.</em></> : <>Meet the world.<br /><em>Rise to the occasion.</em></>}</h1>
+          <p>{isIntra ? 'A rich programme of care, creativity, service, sport and exploration helps every student recognise and actualise their potential.' : 'Structured opportunities in academics, arts and sport build confidence, perspective and a healthy spirit of competition.'}</p>
+        </div>
+        <div className="inner-hero__index"><span>{isIntra ? '05' : '06'}</span><i /><small>{isIntra ? 'Intra-school' : 'Inter-school'}</small></div>
+      </section>
+
+      <div className="programme-switch" aria-label="Programme categories">
+        <div className="shell"><a className={isIntra ? 'active' : ''} href="/programmes/intra-school/"><span>01</span>Intra-School</a><a className={!isIntra ? 'active' : ''} href="/programmes/inter-school/"><span>02</span>Inter-School</a></div>
+      </div>
+
+      {isIntra ? (
+        <>
+          <section className="programmes-intro"><div className="shell manifesto__grid"><div><span className="eyebrow">Growing from within</span><h2>A school experience as individual as <em>every child.</em></h2></div><div><p className="manifesto__lead">Our intra-school programmes create room for every learner to find an interest, develop a passion and grow at an individual pace.</p><p>Social-emotional development, integrated learning, creative expression, physical wellbeing and service come together to nurture healthy, capable and compassionate individuals.</p></div></div></section>
+          <section className="intra-grid-section"><div className="shell"><div className="special-heading"><div><span className="eyebrow eyebrow--light">Life beyond lessons</span><h2>Experiences that become <em>part of who we are.</em></h2></div><p>Each programme is a deliberate part of learning—not an extra. Together, they build agency, curiosity, belonging and the confidence to try.</p></div><div className="programme-card-grid">{intraActivities.map(({ icon: Icon, title, text }, index) => <article key={title}><div><Icon size={25} /><span>0{index + 1}</span></div><h3>{title}</h3><p>{text}</p><ArrowRight size={18} /></article>)}</div></div></section>
+          <section className="programme-feature"><div className="programme-feature__image intra-feature" /><div className="programme-feature__copy"><span className="eyebrow">Outside classroom learning</span><h2>The world is a powerful <em>teacher.</em></h2><p>Environment programmes, camps, science fairs, talks and exchange experiences allow students to apply ideas, encounter new perspectives and build lasting relationships with people and place.</p><div className="tag-row"><span>School camps</span><span>Science fair</span><span>Environment</span><span>Exchange</span></div></div></section>
+        </>
+      ) : (
+        <>
+          <section className="programmes-intro"><div className="shell manifesto__grid"><div><span className="eyebrow">Learning through encounter</span><h2>Competition with <em>curiosity and respect.</em></h2></div><div><p className="manifesto__lead">Inter-school programmes invite students to interface with the outside world in a purposeful, structured setting.</p><p>Meeting peers from diverse contexts develops confidence and perspective while fostering a healthy competitive spirit across academics, arts and sport.</p></div></div></section>
+          <section className="event-showcase"><div className="shell"><div className="event-showcase__head"><span className="eyebrow eyebrow--light">Signature experiences</span><h2>Ideas shared.<br /><em>Talents tested.</em></h2></div><div className="inter-event-grid">{interEvents.map(([title, text], index) => <article key={title}><span>{String(index + 1).padStart(2, '0')}</span><h3>{title}</h3><p>{text}</p><ArrowRight size={18} /></article>)}</div></div></section>
+          <section className="programme-feature reverse"><div className="programme-feature__image inter-feature" /><div className="programme-feature__copy"><span className="eyebrow">A wider community</span><h2>Many schools.<br /><em>One shared stage.</em></h2><p>Festivals and forums give young people a place to listen closely, articulate original ideas, collaborate across difference and celebrate excellence with generosity.</p><div className="tag-row"><span>Debate</span><span>Science</span><span>Technology</span><span>Arts</span><span>Sports</span></div></div></section>
+        </>
+      )}
+      <section className="next-page"><div className="shell"><span>Switch programme</span><a href={isIntra ? '/programmes/inter-school/' : '/programmes/intra-school/'}><strong>{isIntra ? 'Inter-School Programmes' : 'Intra-School Programmes'}</strong><ArrowRight /></a></div></section>
+    </>
+  )
+}
+
 export default function InnerPage({ page }) {
   useEffect(() => { window.scrollTo(0, 0) }, [page])
-  const content = page === 'vision' ? <VisionPage /> : page === 'international' ? <InternationalPage /> : <LearningPage />
+  const content = page === 'vision' ? <VisionPage /> : page === 'international' ? <InternationalPage /> : page === 'special' ? <SpecialEducationPage /> : page === 'intra' || page === 'inter' ? <ProgrammesPage mode={page} /> : <LearningPage />
   return <main id="page-top"><PageHeader active={page} />{content}<PageFooter /></main>
 }
